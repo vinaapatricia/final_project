@@ -90,28 +90,6 @@ class _PaymentPageState extends State<PaymentPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Expanded(
-            //   child: ListView.builder(
-            //     itemCount: cart.items.length,
-            //     itemBuilder: (context, index) {
-            //       final item = cart.items[index];
-            //       return ListTile(
-            //         leading: Image.network(
-            //           item.product['imageUrl'],
-            //           width: 50,
-            //           height: 50,
-            //           fit: BoxFit.cover,
-            //         ),
-            //         title: Text(item.product['title']),
-            //         subtitle: Text('Quantity: ${item.quantity}'),
-            //         trailing: Text(
-            //           '\$${(double.tryParse(item.product['price'].toString()) ?? 0).toStringAsFixed(2)}',
-            //         ),
-            //       );
-            //     },
-            //   ),
-            // ),
-            // SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -221,7 +199,26 @@ class _PaymentPageState extends State<PaymentPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => OrderStatusPage(),
+                        builder: (context) => PaymentSuccessPage(
+                          orderDetails: {
+                            // 'orderId': docRef.id,
+                            'items': cart.items
+                                .map((item) => {
+                                      'title': item.product['title'],
+                                      'quantity': item.quantity,
+                                      'price': item.product['price'],
+                                      'imageUrl': item.product['imageUrl'],
+                                    })
+                                .toList(),
+                            'totalPrice': cart.getTotalPrice(),
+                            'paymentMethod': _selectedPaymentMethod,
+                            'status': 'Success',
+                            'timestamp': Timestamp.now(),
+                          },
+                          paymentMethod: _selectedPaymentMethod,
+                          cartItems: cart.items,
+                          finalAmount: cart.getTotalPrice(),
+                        ),
                       ),
                     );
                   } else {
@@ -244,7 +241,7 @@ class _PaymentPageState extends State<PaymentPage> {
                   style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),

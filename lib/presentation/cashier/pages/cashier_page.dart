@@ -1,5 +1,6 @@
 import 'package:final_project/core/configs/theme/app_colors.dart';
 import 'package:final_project/main.dart';
+import 'package:final_project/presentation/order_status/report.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -253,7 +254,7 @@ class _CashierPageState extends State<CashierPage> {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const MyApp()));
+                    MaterialPageRoute(builder: (context) => OrderPage()));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
