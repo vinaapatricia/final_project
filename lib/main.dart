@@ -1,6 +1,7 @@
 import 'package:final_project/firebase_options.dart';
 import 'package:final_project/presentation/cashier/pages/cashier_page.dart';
 import 'package:final_project/presentation/on_boarding/on_boarding.dart';
+import 'package:final_project/test.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

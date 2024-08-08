@@ -221,12 +221,7 @@ class _PaymentPageState extends State<PaymentPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => PaymentSuccessPage(
-                          orderDetails: {},
-                          paymentMethod: '',
-                          finalAmount: 0.0,
-                          cartItems: [],
-                        ),
+                        builder: (context) => OrderStatusPage(),
                       ),
                     );
                   } else {
